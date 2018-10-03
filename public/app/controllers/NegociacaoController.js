@@ -17,6 +17,8 @@ class NegociacaoController {
             new MensagemView('#mensagemView'),
             'mensagem'
         );
+
+        this._service = new NegociacaoService();
     }
 
     adiciona( e ) {
@@ -36,10 +38,22 @@ class NegociacaoController {
 
     };
 
+    inportarNegociacoes(){
+
+        this._service.obterNegociacaoDaPeriodo()
+        .then(negociacoes => {
+            negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao));
+
+            this._mensagem.mensagem = 'Negociações importadas com sucesso';
+        })
+        .catch(err => this._mensagem.mensagem = err);
+    };
+
     apaga( e ) {
         this._negociacoes.esvazia();
         this._mensagem.mensagem = 'Negociações apagadas com sucesso';
-    }
+    };
+
     _limpaFormulario() {
         this._inputData.value = '';
         this._inputQuantidade.value = 1;
