@@ -1,2 +1,2 @@
 # js-cancaceiro
-Estudos de JavaScript
+Estudos de JavaScript.
