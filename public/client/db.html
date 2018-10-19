@@ -53,7 +53,7 @@
             const negociacoes = [];
 
             const cursor = connection
-            .transaction(['negociacoes'],'readwrite')
+            .transaction(['negociacoes'],'readonly')
             .objectStore('negociacoes')
             .openCursor();
 
@@ -64,7 +64,7 @@
                     const negociacao = new Negociacao(atual.value._data, atual.value._quantidade, atual.value._valor);
 
                     negociacoes.push(negociacao);
-                    
+
                     atual.continue();
                 }else{
                     console.log(negociacoes);
