@@ -19,15 +19,31 @@ class NegociacaoController {
         );
 
         this._service = new NegociacaoService();
+
+        this._init();
     }
 
+    _init(){
+        DaoFactory.getNegociacaoDao()
+        .then(dao => dao.listaTodos())
+        .then(negociacoes => negociacoes.forEach(negociacao => this._negociacoes.adiciona(negociacao)))
+        .catch(err => this._mensagem.mensagem = err);
+    }
     adiciona( e ) {
         e.preventDefault();
 
         try {
-            this._negociacoes.adiciona(this._criaNegociacao());
-            this._mensagem.mensagem = 'Negociacao adicionada com sucesso';
-            this._limpaFormulario();            
+            const negociacao = this._criaNegociacao();
+
+            DaoFactory.getNegociacaoDao()
+            .then(dao => dao.adiciona(negociacao))
+            .then(() => {
+                this._negociacoes.adiciona(negociacao);
+                this._mensagem.mensagem = 'Negociacao adicionada com sucesso';
+
+                this._limpaFormulario();
+            })
+            .catch(err => this._mensagem.mensagem = err);
         } catch (error) {
 
             if(error instanceof DataInvalidaException) {
