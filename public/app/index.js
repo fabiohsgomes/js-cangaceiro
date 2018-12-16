@@ -1,11 +1,28 @@
-const controller = new NegociacaoController();
-const $ = document.querySelector.bind(document);
+System.register(['./controllers/NegociacaoController.js', './util/index.js'], function (_export, _context) {
+    "use strict";
 
-$('.form')
-.addEventListener('submit', controller.adiciona.bind(controller));
+    var NegociacaoController, debounce;
+    return {
+        setters: [function (_controllersNegociacaoControllerJs) {
+            NegociacaoController = _controllersNegociacaoControllerJs.NegociacaoController;
+        }, function (_utilIndexJs) {
+            debounce = _utilIndexJs.debounce;
+        }],
+        execute: function () {
 
-$('#botao-apaga')
-.addEventListener('click', controller.apaga.bind(controller));
+            const controller = new NegociacaoController();
+            const $ = document.querySelector.bind(document);
 
-$('#botao-importa')
-.addEventListener('click', controller.inportarNegociacoes.bind(controller));
+            $('.form').addEventListener('submit', controller.adiciona.bind(controller));
+
+            $('#botao-apaga').addEventListener('click', controller.apaga.bind(controller));
+
+            $('#botao-importa').addEventListener('click', debounce(() => {
+                console.log('EXECUTOU A OPERACÇÃO DE DEBOUNCE');
+
+                controller.inportarNegociacoes();
+            }, 1000));
+        }
+    };
+});
+//# sourceMappingURL=index.js.map

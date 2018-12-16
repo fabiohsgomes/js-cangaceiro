@@ -1,12 +1,24 @@
-class View{
-    constructor(seletor){
-        this._elemento = document.querySelector(seletor);
-    };
+System.register([], function (_export, _context) {
+    "use strict";
 
-    template( model ){
-        throw new Error('O metodo deve ser implementado pelo filho');
+    return {
+        setters: [],
+        execute: function () {
+            class View {
+                constructor(seletor) {
+                    this._elemento = document.querySelector(seletor);
+                }
+
+                template(model) {
+                    throw new Error('O metodo deve ser implementado pelo filho');
+                }
+                update(model) {
+                    this._elemento.innerHTML = this.template(model);
+                }
+            }
+
+            _export('View', View);
+        }
     };
-    update( model ) {
-        this._elemento.innerHTML = this.template(model);
-    };
-}
+});
+//# sourceMappingURL=View.js.map

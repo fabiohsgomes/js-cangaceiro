@@ -44,22 +44,25 @@
 
         <div id="negociacoes"></div>
 
-        <!-- Model -->
+        <!-- Model
         <script src="app/domain/negociacao/Negociacao.js"           charset="UTF-8" type="text/javascript"></script>
         <script src="app/domain/negociacao/Negociacoes.js"          charset="UTF-8" type="text/javascript"></script>
         <script src="app/domain/negociacao/NegociacaoService.js"    charset="UTF-8" type="text/javascript"></script>
         <script src="app/domain/negociacao/NegociacaoDao.js"        charset="UTF-8" type="text/javascript"></script>
         <script src="app/ui/models/Mensagem.js"                     charset="UTF-8" type="text/javascript"></script>
+         -->
 
-        <!-- View -->
+        <!-- View
         <script src="app/ui/views/View.js"                          charset="UTF-8" type="text/javascript"></script>
         <script src="app/ui/views/NegociacoesView.js"               charset="UTF-8" type="text/javascript"></script>
         <script src="app/ui/views/MensagemView.js"                  charset="UTF-8" type="text/javascript"></script>
+         -->
 
-        <!-- Controller -->
+        <!-- Controller
         <script src="app/controllers/NegociacaoController.js"       charset="UTF-8" type="text/javascript"></script>
+         -->
 
-        <!-- Outros -->
+        <!-- Outros
         <script src="app/util/ProxyFactory.js"                      charset="UTF-8" type="text/javascript"></script>
         <script src="app/util/ConnectionFactory.js"                 charset="UTF-8" type="text/javascript"></script>
         <script src="app/util/DaoFactory.js"                        charset="UTF-8" type="text/javascript"></script>
@@ -68,7 +71,15 @@
         <script src="app/util/HttpService.js"                       charset="UTF-8" type="text/javascript"></script>
         <script src="app/ui/converters/DateConverter.js"            charset="UTF-8" type="text/javascript"></script>
         <script src="app/ui/converters/DataInvalidaException.js"    charset="UTF-8" type="text/javascript"></script>
+         -->
 
+         <!--
         <script src="app/index.js"                                  charset="UTF-8" type="text/javascript"></script>
+         -->
+
+         <script type="text/javascript" charset="UTF-8" src="node_modules/systemjs/dist/system.js"></script>
+         <script type="text/javascript" charset="UTF-8">
+            System.import('app/index.js').catch(err => console.error(err));
+         </script>
     </body>
 </html>
