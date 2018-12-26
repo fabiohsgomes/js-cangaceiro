@@ -1,15 +1,12 @@
 import {Negociacoes, NegociacaoService, Negociacao} from '../domain/index.js';
 import {NegociacoesView, Mensagem, MensagemView} from '../ui/index.js';
-import {DaoFactory, DataInvalidaException, Bind, DateConverter, getExceptionMessage} from '../util/index.js';
+import {DaoFactory, Bind, DateConverter, getExceptionMessage, debounce, controller} from '../util/index.js';
 
+@controller('#data','#quantidade','#valor')
 export class NegociacaoController {
-    constructor(){
-        const $ = document.querySelector.bind(document);
-
-        this._inputData       = $('#data');
-        this._inputQuantidade = $('#quantidade');
-        this._inputValor      = $('#valor');
-
+    constructor(_inputData, _inputQuantidade, _inputValor){
+        Object.assign(this,{_inputData,_inputQuantidade,_inputValor});
+        
         this._negociacoes = new Bind(
             new Negociacoes(),
             new NegociacoesView('#negociacoes'),
@@ -37,6 +34,8 @@ export class NegociacaoController {
             this._mensagem.mensagem = getExceptionMessage(error);
         }
     }
+
+    @debounce(1500)
     async adiciona( e ) {
         try {
             e.preventDefault();
@@ -54,7 +53,8 @@ export class NegociacaoController {
         }
     };
 
-    async inportarNegociacoes(){
+    @debounce(1500)
+    async importaNegociacoes(){
         try {
             const negociacoes = await this._service.obterNegociacaoDaPeriodo();
 
