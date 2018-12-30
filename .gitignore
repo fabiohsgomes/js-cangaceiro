@@ -1,4 +1,6 @@
 .vscode/
 server/node_modules/
 public/app/
+public/dist/
+public/client/
 public/node_modules/

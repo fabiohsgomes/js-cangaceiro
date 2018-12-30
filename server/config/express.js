@@ -7,9 +7,11 @@ var express = require('express')
     ,bodyParser = require('body-parser')
     ,compression = require('compression');
 
+/*
 app.set('clientPath', path.join(__dirname, '../..', 'public'));
 console.log(app.get('clientPath'));
 app.use(express.static(app.get('clientPath')));
+*/
 app.use(bodyParser.json());
 app.use(compression());
 app.use(function(req, res, next) {
